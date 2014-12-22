@@ -1,18 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link rel="stylesheet" href="css/bootstrap.css" />
-    <title>{% block TEMP %}{% endblock %}</title>
-</head>
-
-<body>
-    <form action="/login/" method="post">
-        <label for="email">Email: </label>
-        <input id="email" type="text" name="email" value="{{ @stanford.edu }}">
-        <label for="password">Password: </label>
-        <input id="password" type="text" name="password">
-        <input type="submit" value="Login">
-    </form>
-
-</body>
-</html>
+<form action="/login/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>
