@@ -1,5 +1,7 @@
 <form action="/login/" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
+        <label for="email">Email: </label>
+        <input id="email" type="text" name="email" value="{{ @stanford.edu }}">
+        <label for="password">Password: </label>
+        <input id="password" type="text" name="password">
+        <input type="submit" value="Login">
 </form>
