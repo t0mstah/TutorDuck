@@ -1,10 +1,10 @@
 from django.db import models
-from os import urandom
 
 class User(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length=200)
-    salt = models.IntegerField(default=urandom(50))
+    salt = models.CharField(max_length=100)
+
 
 class TutorCard(models.Model):
     tutor = models.ForeignKey(User)
