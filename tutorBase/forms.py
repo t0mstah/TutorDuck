@@ -1,6 +1,5 @@
 from django import forms
-from django.core.exceptions import ValidationError
-
+from django.core.validators import RegexValidator
 
 class loginForm(forms.Form):
     email = forms.CharField(label='Email', max_length=100)
@@ -8,10 +7,7 @@ class loginForm(forms.Form):
 
 
 class CreateForm(forms.Form):
-    email = forms.CharField(label='Email', max_length=100, validators=[validate_email()])
+    email = forms.CharField(label='Email', max_length=100, validators=[
+        RegexValidator(regex=r'.*@stanford.edu$', message='Not a valid email address.')
+    ])
     password = forms.CharField(label='Password')
-
-
-def validate_email(email):
-    if "@stanford.edu" not in email:
-        raise ValidationError('%s is not a valid email address' % email)

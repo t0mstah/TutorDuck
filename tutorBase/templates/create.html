@@ -6,7 +6,9 @@
 </head>
 <body>
 
-<form action="{% url 'tutorBase:create_user' %}" method="post">
+<h1>NEW ACCOUNT YEAH</h1>
+
+<form action="/create" method="post">
     {% csrf_token %}
     <label for="email">Email: </label>
     <input id="email" type="text" name="email">

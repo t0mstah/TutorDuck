@@ -4,6 +4,7 @@ from tutorBase.models import User
 
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.core.urlresolvers import reverse
 from tutorBase.forms import *
 
 
@@ -24,11 +25,14 @@ def create_user(request):
     if request.method == 'POST':
         form = CreateForm(request.POST)
         if form.is_valid():
-            email = form.cleaned_data['Email']
-            password = form.cleaned_data['Password']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
 
             u = User(email=email, password=password)
             u.save()
+            return HttpResponseRedirect(reverse('login'))
+        else:
+            return render(request, 'create.html', {'form':form})
 
     else:
         form = CreateForm()
