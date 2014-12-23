@@ -9,5 +9,8 @@ urlpatterns = patterns('',
         'tutorBase.views.login', name='login'),
 
     url(r'^create$',
-        'tutorBase.views.create_user', name='create_user')
+        'tutorBase.views.create_user', name='create_user'),
+
+    url(r'^who$',
+        'tutorBase.views.who', name='who'),
 )

@@ -23,10 +23,8 @@
   <body>
 
     <h1></h1>
-    <div class="container" style="width:600px">
+    <div class="container" style="width:600px;margin-top:200px">
         <div class="starter-template">
-            {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-
             <form action="/create" method="post">
                 {% csrf_token %}
                 <div class="form-group">
@@ -37,6 +35,11 @@
                     <label for="password">Password</label>
                     <input type="password" class="form-control" id="password">
                 </div>
+                {% if error_message %}<div class="alert alert-danger" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Error:</span>
+                    {{ error_message }}
+                </div>{% endif %}
                 <button type="submit" class="btn btn-default">Create</button>
             </form>
     </div><!-- /.container -->
