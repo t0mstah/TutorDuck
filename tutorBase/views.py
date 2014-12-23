@@ -41,3 +41,10 @@ def who(request):
 
 def authenticate_user(email, password):
     return User.objects.filter(email=email).filter(password=password)
+
+
+def tutor(request):
+    return render(request, 'tutor.html')
+
+def student(request):
+    return render(request, 'student.html')
