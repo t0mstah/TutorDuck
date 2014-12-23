@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd4d5c7a-0d33-4d30-8925-371bacc40a9b" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tutorBase/templates/create.html" afterPath="$PROJECT_DIR$/tutorBase/templates/create.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tutorBase/templates/login.html" afterPath="$PROJECT_DIR$/tutorBase/templates/login.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/winterproject/urls.py" afterPath="$PROJECT_DIR$/winterproject/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tutorBase/views.py" afterPath="$PROJECT_DIR$/tutorBase/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tutorBase/forms.py" afterPath="$PROJECT_DIR$/tutorBase/forms.py" />
     </list>
     <ignored path="winterproject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tutorBase/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.76236266" vertical-offset="0" max-vertical-offset="728">
-              <caret line="37" column="61" selection-start-line="37" selection-start-column="61" selection-end-line="37" selection-end-column="61" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+              <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -70,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tutorBase/forms.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
-              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.10302198" vertical-offset="0" max-vertical-offset="728">
+              <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -107,11 +103,11 @@
         <option value="$PROJECT_DIR$/tutorBase/models.py" />
         <option value="$PROJECT_DIR$/winterproject/settings.py" />
         <option value="$PROJECT_DIR$/tutorBase/urls.py" />
-        <option value="$PROJECT_DIR$/tutorBase/forms.py" />
         <option value="$PROJECT_DIR$/tutorBase/templates/create.html" />
         <option value="$PROJECT_DIR$/tutorBase/templates/login.html" />
         <option value="$PROJECT_DIR$/winterproject/urls.py" />
         <option value="$PROJECT_DIR$/tutorBase/views.py" />
+        <option value="$PROJECT_DIR$/tutorBase/forms.py" />
       </list>
     </option>
   </component>
@@ -625,16 +621,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tutorBase/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/winterproject/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="270">
@@ -657,10 +643,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tutorBase/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76236266" vertical-offset="0" max-vertical-offset="728">
-          <caret line="37" column="61" selection-start-line="37" selection-start-column="61" selection-end-line="37" selection-end-column="61" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="660">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tutorBase/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10302198" vertical-offset="0" max-vertical-offset="728">
+          <caret line="5" column="48" selection-start-line="5" selection-start-column="48" selection-end-line="5" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>
