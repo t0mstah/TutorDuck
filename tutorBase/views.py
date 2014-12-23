@@ -6,7 +6,6 @@ from os import urandom
 from base64 import b64encode
 import hashlib
 
-
 def login(request):
     if request.method == 'POST':
         email = request.POST['email']
@@ -28,9 +27,9 @@ def create_user(request):
         secure_bytes = urandom(50)
         char_salt = b64encode(secure_bytes).decode('utf-8')
 
+        h = hashlib.sha256(password+char_salt).hex_digest()
 
-
-        user = User(email=email, password=password, salt=char_salt)
+        user = User(email=email, password=h, salt=char_salt)
         user.save()
         return HttpResponseRedirect(reverse('login'))
     else:
