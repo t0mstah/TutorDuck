@@ -1,10 +1,10 @@
-from django.contrib.auth import authenticate, login
 from tutorBase.models import User
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from os import urandom
 from base64 import b64encode
+import hashlib
 
 
 def login(request):
@@ -27,6 +27,8 @@ def create_user(request):
 
         secure_bytes = urandom(50)
         char_salt = b64encode(secure_bytes).decode('utf-8')
+
+
 
         user = User(email=email, password=password, salt=char_salt)
         user.save()
