@@ -32,7 +32,7 @@ def create_user(request):
             u.save()
             return HttpResponseRedirect(reverse('login'))
         else:
-            return render(request, 'create.html', {'form':form})
+            return render(request, 'create.html', {'form': form, 'error_message': 'An error occurred.'})
 
     else:
         form = CreateForm()

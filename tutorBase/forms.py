@@ -11,7 +11,7 @@ class loginForm(forms.Form):
 
 
 class CreateForm(forms.Form):
-    email = forms.CharField(label='Email', max_length=100, validators=[
-        RegexValidator(regex=r'.*@stanford.edu$', message='Not a valid email address.')
+    email = forms.CharField(label='email', max_length=100, validators=[
+        RegexValidator(regex=r'.*@stanford.edu$')
     ])
-    password = forms.CharField(label='Password')
+    password = forms.CharField(label='password')
