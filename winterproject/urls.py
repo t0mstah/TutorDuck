@@ -5,10 +5,10 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^login$',
+    url(r'^login/',
         'tutorBase.views.login', name='login'),
 
-    url(r'^create$',
+    url(r'^create/',
         'tutorBase.views.create_user', name='create_user'),
 
     url(r'^who$',

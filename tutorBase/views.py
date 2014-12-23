@@ -1,45 +1,40 @@
 from django.contrib.auth import authenticate, login
-from tutorBase.forms import userForm
 from tutorBase.models import User
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from os import urandom
+from base64 import b64encode
+
 
 def login(request):
     if request.method == 'POST':
-        form = userForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
-            user = authenticate(email=email, password=password)
-            if user:
-                login(request, user)
-                return HttpResponseRedirect(reverse('who'))
-            else:
-                return render(request, 'login.html', {'form': form, 'error_message': 'Invalid login.'})
+        email = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(email=email, password=password)
+        if user:
+            login(request, user)
+            return HttpResponseRedirect(reverse('who'))
         else:
-            return render(request, 'login.html', {'form': form, 'error_message': 'An error occurred.'})
-
+            return render(request, 'login.html', {'error_message': 'Invalid login.'})
     else:
-        form = userForm()
-        return render(request, 'login.html', {'form': form})
+        return render(request, 'login.html')
+
 
 def create_user(request):
     if request.method == 'POST':
-        form = userForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password']
+        email = request.POST['email']
+        password = request.POST['password']
 
-            user = User(email=email, password=password)
-            user.save()
-            return HttpResponseRedirect(reverse('login'))
-        else:
-            return render(request, 'create.html', {'form': form, 'error_message': 'An error occurred.'})
+        secure_bytes = urandom(50)
+        char_salt = b64encode(secure_bytes).decode('utf-8')
 
+        user = User(email=email, password=password, salt=char_salt)
+        user.save()
+        return HttpResponseRedirect(reverse('login'))
     else:
-        form = userForm()
-        return render(request, 'create.html', {'form': form})
+        return render(request, 'create.html')
+
 
 def who(request):
     return render(request, 'who.html')

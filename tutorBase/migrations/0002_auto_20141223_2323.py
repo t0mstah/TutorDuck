@@ -16,4 +16,10 @@ class Migration(migrations.Migration):
             old_name='tagline',
             new_name='tagLine',
         ),
+        migrations.AddField(
+            model_name='user',
+            name='salt',
+            field=models.CharField(default=1, max_length=100),
+            preserve_default=False,
+        ),
     ]
