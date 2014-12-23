@@ -11,9 +11,8 @@ def login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
-        user = authenticate(email=email, password=password)
+        user = authenticate_user(email=email, password=password)
         if user:
-            login(request, user)
             return HttpResponseRedirect(reverse('who'))
         else:
             return render(request, 'login.html', {'error_message': 'Invalid login.'})
@@ -38,3 +37,7 @@ def create_user(request):
 
 def who(request):
     return render(request, 'who.html')
+
+
+def authenticate_user(email, password):
+    return User.objects.filter(email=email).filter(password=password)
