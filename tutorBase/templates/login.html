@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -52,3 +53,13 @@
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
+=======
+<form action="/login" method="post">
+    {% csrf_token %}
+    <label for="email">Email: </label>
+    <input id="email" type="text" name="email">
+    <label for="password">Password: </label>
+    <input id="password" type="text" name="password">
+    <input type="submit" value="Login">
+</form>
+>>>>>>> 7ab576d81c3b6f5cd42fb4a8d6b9ac7e1312b7aa
