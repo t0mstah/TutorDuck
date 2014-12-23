@@ -22,15 +22,15 @@
   <body>
     <div class="container" style="width:600px;margin-top:200px">
         <div class="starter-template">
-            <form action="/login" method = "post">
+            <form action="/login/" method = "post">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="@stanford.edu">
+                    <input type="email" name="email" class="form-control" id="email" placeholder="@stanford.edu">
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" class="form-control" id="password">
+                    <input type="password" name="password" class="form-control" id="password">
                 </div>
                 {% if error_message %}<div class="alert alert-danger" role="alert">
                     <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
