@@ -1,5 +1,7 @@
-from django.shortcuts import render
 from django.contrib.auth import authenticate
+from tutorBase.forms import CreateForm
+from tutorBase.models import User
+from django.core.urlresolvers import reverse
 
 # Create your views here.
 
