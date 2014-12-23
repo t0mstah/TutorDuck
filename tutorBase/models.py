@@ -1,8 +1,10 @@
 from django.db import models
+import os
 
 class User(models.Model):
     email = models.EmailField()
     password = models.CharField(max_length=200)
+    salt = models.IntegerField(default=os.urandom(50))
 
 class TutorCard(models.Model):
     tutor = models.ForeignKey(User)

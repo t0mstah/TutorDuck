@@ -1,7 +1,4 @@
 from tutorBase.models import User
-
-# Create your views here.
-
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -32,8 +29,8 @@ def create_user(request):
             u.save()
             return HttpResponseRedirect(reverse('login'))
         else:
-            return render(request, 'create.html', {'form':form})
-
+            return render(request, 'create.html', {'form': form,
+                                                   'error_message': 'Email must end with \'@stanford.edu\''})
     else:
         form = CreateForm()
         return render(request, 'create.html', {'form': form})

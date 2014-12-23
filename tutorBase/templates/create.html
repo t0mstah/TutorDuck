@@ -8,6 +8,8 @@
 
 <h1>NEW ACCOUNT YEAH</h1>
 
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
 <form action="/create" method="post">
     {% csrf_token %}
     <label for="email">Email: </label>
