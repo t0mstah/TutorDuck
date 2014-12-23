@@ -1,21 +1,20 @@
 from django.contrib.auth import authenticate
 from tutorBase.forms import CreateForm
+from tutorBase.forms import LoginForm
 from tutorBase.models import User
 from django.core.urlresolvers import reverse
-
-# Create your views here.
-
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from tutorBase.forms import LoginForm
 
 def login(request):
     if request.method == 'POST':
-        email = request.POST['email']
-        password = request.POST['password']
+        form = CreateForm(request.POST)
+        email = form.cleaned_data['email']
+        password = form.cleaned_data['password']
         user = authenticate(email=email, password=password)
         if user:
-            return HttpResponseRedirect('/who/')
+            return HttpResponseRedirect('/who')
+
     else:
         form = LoginForm()
 
@@ -37,4 +36,3 @@ def create_user(request):
     else:
         form = CreateForm()
         return render(request, 'create.html', {'form': form})
-

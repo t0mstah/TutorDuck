@@ -8,9 +8,6 @@ urlpatterns = patterns('',
     url(r'^login$',
         'tutorBase.views.login', name='login'),
 
-    url(r'^login$',
-        'tutorBase.views.login', name='login'),
-
     url(r'^create$',
         'tutorBase.views.create_user', name='create_user')
 )
