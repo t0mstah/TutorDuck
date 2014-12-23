@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="cd4d5c7a-0d33-4d30-8925-371bacc40a9b" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tutorBase/templates/create.html" afterPath="$PROJECT_DIR$/tutorBase/templates/create.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/winterproject/urls.py" afterPath="$PROJECT_DIR$/winterproject/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="winterproject.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,8 +33,8 @@
       <file leaf-file-name="login.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/tutorBase/templates/login.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="885">
-              <caret line="13" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="53" selection-end-column="7" />
+            <state vertical-scroll-proportion="-24.375" vertical-offset="0" max-vertical-offset="885">
+              <caret line="39" column="72" selection-start-line="30" selection-start-column="12" selection-end-line="39" selection-end-column="72" />
               <folding />
             </state>
           </provider>
@@ -45,8 +43,8 @@
       <file leaf-file-name="create.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tutorBase/templates/create.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.59659094" vertical-offset="0" max-vertical-offset="855">
-              <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.87357956" vertical-offset="30" max-vertical-offset="900">
+              <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -104,8 +102,8 @@
         <option value="$PROJECT_DIR$/tutorBase/templates/login.html" />
         <option value="$PROJECT_DIR$/tutorBase/views.py" />
         <option value="$PROJECT_DIR$/tutorBase/forms.py" />
-        <option value="$PROJECT_DIR$/tutorBase/templates/create.html" />
         <option value="$PROJECT_DIR$/winterproject/urls.py" />
+        <option value="$PROJECT_DIR$/tutorBase/templates/create.html" />
       </list>
     </option>
   </component>
@@ -609,14 +607,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tutorBase/templates/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="885">
-          <caret line="13" column="16" selection-start-line="0" selection-start-column="0" selection-end-line="53" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/winterproject/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
@@ -647,10 +637,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tutorBase/templates/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-24.375" vertical-offset="0" max-vertical-offset="885">
+          <caret line="39" column="72" selection-start-line="30" selection-start-column="12" selection-end-line="39" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/tutorBase/templates/create.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.59659094" vertical-offset="0" max-vertical-offset="855">
-          <caret line="28" column="38" selection-start-line="28" selection-start-column="38" selection-end-line="28" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.87357956" vertical-offset="30" max-vertical-offset="900">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding />
         </state>
       </provider>
