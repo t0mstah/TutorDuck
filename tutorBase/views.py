@@ -1,6 +1,5 @@
 from django.contrib.auth import authenticate, login
-from tutorBase.forms import CreateForm
-from tutorBase.forms import LoginForm
+from tutorBase.forms import userForm
 from tutorBase.models import User
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
@@ -8,7 +7,7 @@ from django.http import HttpResponseRedirect
 
 def login(request):
     if request.method == 'POST':
-        form = CreateForm(request.POST)
+        form = userForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
@@ -22,12 +21,12 @@ def login(request):
             return render(request, 'login.html', {'form': form, 'error_message': 'An error occurred.'})
 
     else:
-        form = LoginForm()
+        form = userForm()
         return render(request, 'login.html', {'form': form})
 
 def create_user(request):
     if request.method == 'POST':
-        form = CreateForm(request.POST)
+        form = userForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data['email']
             password = form.cleaned_data['password']
@@ -39,7 +38,7 @@ def create_user(request):
             return render(request, 'create.html', {'form': form, 'error_message': 'An error occurred.'})
 
     else:
-        form = CreateForm()
+        form = userForm()
         return render(request, 'create.html', {'form': form})
 
 def who(request):
