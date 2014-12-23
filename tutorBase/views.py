@@ -9,11 +9,16 @@ from django.http import HttpResponseRedirect
 def login(request):
     if request.method == 'POST':
         form = CreateForm(request.POST)
-        email = form.cleaned_data['email']
-        password = form.cleaned_data['password']
-        user = authenticate(email=email, password=password)
-        if user:
-            return HttpResponseRedirect('/who')
+        if form.is_valid():
+            email = request.POST.get('email')
+            password = request.POST.get('password')
+            user = authenticate(email=email, password=password)
+            if user:
+                return HttpResponseRedirect('/who')
+            else:
+                return render(request, 'login.html', {'form': form, 'error_message': 'Invalid login.'})
+        else:
+            return render(request, 'login.html', {'form': form, 'error_message': 'An error occurred.'})
 
     else:
         form = LoginForm()
