@@ -42,4 +42,4 @@ def create_user(request):
         return render(request, 'create.html', {'form': form})
 
 def who(request):
-    return
+    return render(request, 'who.html')
