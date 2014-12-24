@@ -5,7 +5,9 @@ from django.http import HttpResponseRedirect
 from os import urandom
 from base64 import b64encode
 import hashlib
+import re
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
+
 
 def login(request):
     if request.method == 'POST':
@@ -25,6 +27,13 @@ def create_user(request):
         email = request.POST['email']
         password = request.POST['password']
 
+        stanford_email = re.match('.*@stanford.edu$', email)
+        if stanford_email is None:
+            return render(request, 'create.html', {'error_message': 'Valid @stanford.edu email required'})
+
+        if User.objects.filter(email=email).count() > 0:
+            return render(request, 'create.html', {'error_message': 'User with email \'%s\' already exists' % email})
+
         secure_bytes = urandom(50)
         char_salt = b64encode(secure_bytes).decode('utf-8')
         combined = (password+char_salt).encode('utf-8')
@@ -39,7 +48,7 @@ def create_user(request):
 
 
 def who(request):
-    if (0 == 0):
+    if 0 == 0:
         return render(request, 'who.html')
     else:
         return render(request, 'login.html', {'error_message': 'You must login to continue'})
@@ -56,7 +65,7 @@ def authenticate_user(email, password):
 
     try:
         found_user = User.objects.get(email=email, password=hash_check)
-    except ObjectDoesNotExist:
+    except (ObjectDoesNotExist, MultipleObjectsReturned):
         return None
     return found_user
 
