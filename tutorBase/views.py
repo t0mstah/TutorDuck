@@ -36,7 +36,10 @@ def create_user(request):
 
 
 def who(request):
-    return render(request, 'who.html')
+    if (0 == 0):
+        return render(request, 'who.html')
+    else:
+        return render(request, 'login.html', {'error_message': 'You must login to continue'})
 
 
 def authenticate_user(email, password):
@@ -45,6 +48,7 @@ def authenticate_user(email, password):
 
 def tutor(request):
     return render(request, 'tutor.html')
+
 
 def student(request):
     return render(request, 'student.html')
