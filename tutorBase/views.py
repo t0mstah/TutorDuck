@@ -46,7 +46,6 @@ def who(request):
 
 
 def authenticate_user(email, password):
-
     try:
         check_user = User.objects.get(email=email)
     except (ObjectDoesNotExist, MultipleObjectsReturned):
