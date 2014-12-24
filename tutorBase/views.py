@@ -5,13 +5,14 @@ from django.http import HttpResponseRedirect
 from os import urandom
 from base64 import b64encode
 import hashlib
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 
 def login(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
         user = authenticate_user(email=email, password=password)
-        if user:
+        if user is not None:
             return HttpResponseRedirect(reverse('who'))
         else:
             return render(request, 'login.html', {'error_message': 'Invalid login.'})
@@ -26,8 +27,9 @@ def create_user(request):
 
         secure_bytes = urandom(50)
         char_salt = b64encode(secure_bytes).decode('utf-8')
+        combined = (password+char_salt).encode('utf-8')
 
-        h = hashlib.sha256(password+char_salt).hex_digest()
+        h = hashlib.sha256(combined).hexdigest()
 
         user = User(email=email, password=h, salt=char_salt)
         user.save()
@@ -41,11 +43,25 @@ def who(request):
 
 
 def authenticate_user(email, password):
-    return User.objects.filter(email=email).filter(password=password)
+
+    try:
+        check_user = User.objects.get(email=email)
+    except (ObjectDoesNotExist, MultipleObjectsReturned):
+        return None
+
+    combined = (password + check_user.salt).encode('utf-8')
+    hash_check = hashlib.sha256(combined).hexdigest()
+
+    try:
+        found_user = User.objects.get(email=email, password=hash_check)
+    except ObjectDoesNotExist:
+        return None
+    return found_user
 
 
 def tutor(request):
     return render(request, 'tutor.html')
+
 
 def student(request):
     return render(request, 'student.html')
