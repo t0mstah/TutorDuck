@@ -5,7 +5,6 @@ class User(models.Model):
     password = models.CharField(max_length=200)
     salt = models.CharField(max_length=100)
 
-
 class TutorCard(models.Model):
     tutor = models.ForeignKey(User)
     first_name = models.CharField(max_length=200)
@@ -13,5 +12,3 @@ class TutorCard(models.Model):
     department = models.CharField(max_length=200)
     tagLine = models.CharField(max_length=200)
     description = models.CharField(max_length=200)
-    rate = models.CommaSeparatedIntegerField(max_length=10)
-    phone = models.IntegerField()

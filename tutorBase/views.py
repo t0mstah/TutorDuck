@@ -1,4 +1,4 @@
-from tutorBase.models import User
+from tutorBase.models import User, TutorCard
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
@@ -71,7 +71,18 @@ def authenticate_user(email, password):
 
 
 def tutor(request):
-    return render(request, 'tutor.html')
+    if request.method == 'POST':
+        first_name = request.POST['first_name']
+        school = request.POST['school']
+        department = request.POST['department']
+        tagLine = request.POST['tagLine']
+        description = request.POST['description']
+
+        tutorCard = TutorCard(first_name=first_name, school=school, department=department, tagLine=tagLine, description=description)
+        tutorCard.save()
+        return render(request, 'tutor.html')
+    else:
+        return render(request, 'tutor.html')
 
 
 def student(request):
