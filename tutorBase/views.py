@@ -7,7 +7,7 @@ from base64 import b64encode
 import hashlib
 import re
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
-
+from django.core.mail import send_mail
 
 def login(request):
     if request.method == 'POST':
@@ -22,6 +22,7 @@ def login(request):
         return render(request, 'login.html')
 
 
+TEST_EMAIL = 'jeanluc.watson@gmail.com'
 def create_user(request):
     if request.method == 'POST':
         email = request.POST['email']
@@ -40,11 +41,39 @@ def create_user(request):
 
         h = hashlib.sha256(combined).hexdigest()
 
-        user = User(email=email, password=h, salt=char_salt)
-        user.save()
-        return HttpResponseRedirect(reverse('login'))
+        request.session['email'] = email
+        request.session['password'] = h
+        request.session['salt'] = char_salt
+
+        code = hashlib.sha256(urandom(20)).hexdigest()[:5].upper()
+        request.session['code'] = code
+
+        send_mail('Your verification code',
+                  'Your verification code: %s\nIf you did not request this code, please ignore this message.' % code,
+                  'winterproject.test@gmail.com', [TEST_EMAIL], fail_silently=False)
+
+        return HttpResponseRedirect(reverse('verify'))
     else:
         return render(request, 'create.html')
+
+
+def verify(request):
+    if request.method == 'POST':
+
+        code = request.POST['code']
+        if code != request.session.get('code'):
+            return render(request, 'verify.html', {'error_message': 'Incorrect Code'})
+
+        email = request.session.get('email')
+        pwd = request.session.get('password')
+        salt = request.session.get('salt')
+
+        user = User(email=email, password=pwd, salt=salt)
+        user.save()
+        request.session.flush()
+        return HttpResponseRedirect(reverse('login'))
+    else:
+        return render(request, 'verify.html')
 
 
 def who(request):

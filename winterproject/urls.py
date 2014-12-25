@@ -11,6 +11,9 @@ urlpatterns = patterns('',
     url(r'^create/',
         'tutorBase.views.create_user', name='create_user'),
 
+    url(r'^verify/',
+        'tutorBase.views.verify', name='verify'),
+
     url(r'^who$',
         'tutorBase.views.who', name='who'),
 
