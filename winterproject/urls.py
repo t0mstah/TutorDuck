@@ -17,6 +17,18 @@ urlpatterns = patterns('',
     url(r'^tutor/',
         'tutorBase.views.tutor', name='tutor'),
 
-    url(r'^student$',
-        'tutorBase.views.student', name='student'),
+    url(r'^school',
+        'tutorBase.views.school', name='school'),
+
+    url(r'^engineering/',
+        'tutorBase.views.engineering', name='engineering'),
+
+    url(r'^humanities/',
+        'tutorBase.views.humanities', name='humanities'),
+
+    url(r'^science/',
+        'tutorBase.views.science', name='science'),
+
+    url(r'^earth/',
+        'tutorBase.views.earth', name='earth'),
 )

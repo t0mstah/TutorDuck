@@ -72,18 +72,31 @@ def authenticate_user(email, password):
 
 def tutor(request):
     if request.method == 'POST':
+        tutor = User.objects.get(id=1)
         first_name = request.POST['first_name']
         school = request.POST['school']
         department = request.POST['department']
         tagLine = request.POST['tagLine']
         description = request.POST['description']
 
-        tutorCard = TutorCard(first_name=first_name, school=school, department=department, tagLine=tagLine, description=description)
+        tutorCard = TutorCard(tutor=tutor, first_name=first_name, school=school, department=department, tagLine=tagLine, description=description)
         tutorCard.save()
-        return render(request, 'tutor.html')
+        return render(request, 'who.html')
     else:
         return render(request, 'tutor.html')
 
 
-def student(request):
-    return render(request, 'student.html')
+def school(request):
+    return render(request, 'school.html')
+
+def engineering(request):
+    return render(request, 'engineering.html')
+
+def humanities(request):
+    return render(request, 'humanities.html')
+
+def science(request):
+    return render(request, 'science.html')
+
+def earth(request):
+    return render(request, 'earth.html')
