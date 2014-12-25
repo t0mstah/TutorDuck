@@ -15,6 +15,8 @@ def login(request):
         password = request.POST['password']
         user = authenticate_user(email=email, password=password)
         if user is not None:
+            request.session['email'] = email
+            request.session['logged_in'] = True
             return HttpResponseRedirect(reverse('who'))
         else:
             return render(request, 'login.html', {'error_message': 'Invalid login.'})
@@ -22,7 +24,7 @@ def login(request):
         return render(request, 'login.html')
 
 
-TEST_EMAIL = 'jeanluc.watson@gmail.com'
+TEST_EMAIL = 'tommy.fang12@gmail.com'
 def create_user(request):
     if request.method == 'POST':
         email = request.POST['email']
@@ -59,7 +61,6 @@ def create_user(request):
 
 def verify(request):
     if request.method == 'POST':
-
         code = request.POST['code']
         if code != request.session.get('code'):
             return render(request, 'verify.html', {'error_message': 'Incorrect Code'})
@@ -77,7 +78,7 @@ def verify(request):
 
 
 def who(request):
-    if 0 == 0:
+    if request.session.get('logged_in', False):
         return render(request, 'who.html')
     else:
         return render(request, 'login.html', {'error_message': 'You must login to continue'})
@@ -100,32 +101,55 @@ def authenticate_user(email, password):
 
 
 def tutor(request):
-    if request.method == 'POST':
-        tutor = User.objects.get(id=1)
-        first_name = request.POST['first_name']
-        school = request.POST['school']
-        department = request.POST['department']
-        tagLine = request.POST['tagLine']
-        description = request.POST['description']
+    if request.session.get('logged_in', False):
+        if request.method == 'POST':
+            email = request.session.get('email')
+            tutor = User.objects.get(email=email)
+            first_name = request.POST['first_name']
+            school = request.POST['school']
+            department = request.POST['department']
+            tagLine = request.POST['tagLine']
+            description = request.POST['description']
 
-        tutorCard = TutorCard(tutor=tutor, first_name=first_name, school=school, department=department, tagLine=tagLine, description=description)
-        tutorCard.save()
-        return render(request, 'who.html')
+            tutorCard = TutorCard(tutor=tutor, first_name=first_name, school=school, department=department, tagLine=tagLine, description=description)
+            tutorCard.save()
+            return render(request, 'who.html')
+        else:
+            return render(request, 'tutor.html')
     else:
-        return render(request, 'tutor.html')
+        return render(request, 'login.html', {'error_message': 'You must login to continue'})
 
 
 def school(request):
-    return render(request, 'school.html')
+    if request.session.get('logged_in', False):
+        return render(request, 'school.html')
+    else:
+        return render(request, 'login.html', {'error_message': 'You must login to continue'})
+
 
 def engineering(request):
-    return render(request, 'engineering.html')
+    if request.session.get('logged_in', False):
+        return render(request, 'engineering.html')
+    else:
+        return render(request, 'login.html', {'error_message': 'You must login to continue'})
+
 
 def humanities(request):
-    return render(request, 'humanities.html')
+    if request.session.get('logged_in', False):
+        return render(request, 'humanities.html')
+    else:
+        return render(request, 'login.html', {'error_message': 'You must login to continue'})
+
 
 def science(request):
-    return render(request, 'science.html')
+    if request.session.get('logged_in', False):
+        return render(request, 'science.html')
+    else:
+        return render(request, 'login.html', {'error_message': 'You must login to continue'})
+
 
 def earth(request):
-    return render(request, 'earth.html')
+    if request.session.get('logged_in', False):
+        return render(request, 'earth.html')
+    else:
+        return render(request, 'login.html', {'error_message': 'You must login to continue'})
