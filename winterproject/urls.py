@@ -14,7 +14,7 @@ urlpatterns = patterns('',
     url(r'^who$',
         'tutorBase.views.who', name='who'),
 
-    url(r'^tutor$',
+    url(r'^tutor/',
         'tutorBase.views.tutor', name='tutor'),
 
     url(r'^student$',
