@@ -14,6 +14,9 @@ urlpatterns = patterns('',
     url(r'^verify/',
         'tutorBase.views.verify', name='verify'),
 
+    url(r'^logout/',
+        'tutorBase.views.logout', name='logout'),
+
     url(r'^who$',
         'tutorBase.views.who', name='who'),
 

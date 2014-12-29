@@ -21,7 +21,9 @@
   </head>
 
   <body>
-
+    {% if request.session.logged_in %}
+        {% include 'logout.html' %}
+    {% endif %}
     <h1></h1>
     <div class="container" style="width:600px;margin-top:200px">
         <div class="starter-template">

@@ -9,7 +9,12 @@ import re
 from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.core.mail import send_mail
 
+
 def login(request):
+
+    if request.session.get('logged_in', False):
+            return HttpResponseRedirect(reverse('who'))
+
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
@@ -24,7 +29,9 @@ def login(request):
         return render(request, 'login.html')
 
 
-TEST_EMAIL = 'tommy.fang12@gmail.com'
+TEST_EMAIL = 'jeanluc.watson@gmail.com'
+
+
 def create_user(request):
     if request.method == 'POST':
         email = request.POST['email']
@@ -72,16 +79,11 @@ def verify(request):
         user = User(email=email, password=pwd, salt=salt)
         user.save()
         request.session.flush()
-        return HttpResponseRedirect(reverse('login'))
+        request.session['email'] = email
+        request.session['logged_in'] = True
+        return HttpResponseRedirect(reverse('who'))
     else:
         return render(request, 'verify.html')
-
-
-def who(request):
-    if request.session.get('logged_in', False):
-        return render(request, 'who.html')
-    else:
-        return render(request, 'login.html', {'error_message': 'You must login to continue'})
 
 
 def authenticate_user(email, password):
@@ -98,6 +100,18 @@ def authenticate_user(email, password):
     except (ObjectDoesNotExist, MultipleObjectsReturned):
         return None
     return found_user
+
+
+def who(request):
+    if request.session.get('logged_in', False):
+        return render(request, 'who.html')
+    else:
+        return render(request, 'login.html', {'error_message': 'You must login to continue'})
+
+
+def logout(request):
+    request.session.flush()
+    return HttpResponseRedirect(reverse('login'), {'error_message': 'You have been logged out successfully'})
 
 
 def tutor(request):
