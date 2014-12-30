@@ -28,7 +28,7 @@ def login(request):
         return render(request, 'login.html')
 
 
-TEST_EMAIL = 'jeanluc.watson@gmail.com'
+TEST_EMAIL = 'tommy.fang12@gmail.com'
 
 
 def create_user(request):
