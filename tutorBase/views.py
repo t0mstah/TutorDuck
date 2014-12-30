@@ -11,7 +11,6 @@ from django.core.mail import send_mail
 
 
 def login(request):
-
     if request.session.get('logged_in', False):
             return HttpResponseRedirect(reverse('who'))
 
@@ -134,36 +133,58 @@ def tutor(request):
         return render(request, 'login.html', {'error_message': 'You must login to continue'})
 
 
-def school(request):
+def stanford(request, school=None, department=None, tutor=None):
     if request.session.get('logged_in', False):
-        return render(request, 'school.html')
+        if tutor:
+            tutor = TutorCard.objects.filter(first_name=tutor)
+            return render(request, 'card.html', {'tutor': tutor})
+        elif department:
+            tutors = TutorCard.objects.filter(department=department)
+            return render(request, 'department.html', {'tutors': tutors})
+        elif school:
+            schools = getDepartments(school)
+            return render(request, 'school.html', {'schools': schools})
+        else:
+            return render(request, 'stanford.html')
     else:
         return render(request, 'login.html', {'error_message': 'You must login to continue'})
 
 
-def engineering(request):
-    if request.session.get('logged_in', False):
-        return render(request, 'engineering.html')
-    else:
-        return render(request, 'login.html', {'error_message': 'You must login to continue'})
+def getDepartments(school):
+    if school == 'engineering':
+        return ({'display': "Chemical Engineering", 'value': "CHE"},
+               {'display': "Civil Engineering", 'value': "CE"},
+               {'display': "Computer Science", 'value': "CS"},
+               {'display': "Electrical Engineering", 'value': "EE"},
+               {'display': "Environmental Engineering", 'value': "ENV"},
+               {'display': "Management Science and Engineering", 'value': "MS&E"},
+               {'display': "Materials Science and Engineering", 'value': "MSE"},
+               {'display': "Mechanical Engineering", 'value': "ME"})
 
+    if school == 'humanities':
+        return ({'display': "Art and Art History", 'value': "ART"},
+               {'display': "Classics", 'value': "CLASS"},
+               {'display': "English", 'value': "ENGL"},
+               {'display': "History", 'value': "HIST"},
+               {'display': "Linguistics", 'value': "LING"},
+               {'display': "Music", 'value': "MUS"},
+               {'display': "Philosophy", 'value': "PHL"},
+               {'display': "Languages", 'value': "LANG"})
 
-def humanities(request):
-    if request.session.get('logged_in', False):
-        return render(request, 'humanities.html')
-    else:
-        return render(request, 'login.html', {'error_message': 'You must login to continue'})
+    if school == 'science':
+        return ({'display': "Biology", 'value': "BIO"},
+               {'display': "Chemistry", 'value': "CHEM"},
+               {'display': "Communication", 'value': "COMM"},
+               {'display': "Economics", 'value': "ECON"},
+               {'display': "Mathematics", 'value': "MATH"},
+               {'display': "Physics", 'value': "PHY"},
+               {'display': "Political Science", 'value': "POLI"},
+               {'display': "Psychology", 'value': "PSYCH"},
+               {'display': "Statistics", 'value': "STAT"},
+               {'display': "Classics", 'value': "CLA"})
 
-
-def science(request):
-    if request.session.get('logged_in', False):
-        return render(request, 'science.html')
-    else:
-        return render(request, 'login.html', {'error_message': 'You must login to continue'})
-
-
-def earth(request):
-    if request.session.get('logged_in', False):
-        return render(request, 'earth.html')
-    else:
-        return render(request, 'login.html', {'error_message': 'You must login to continue'})
+    if school == 'earth':
+        return ({'display': "Earth Systems", 'value': "ESYS"},
+               {'display': "Energy Resources Engineering", 'value': "ERE"},
+               {'display': "Geological and Environmental Sciences", 'value': "GES"},
+               {'display': "Geophysics", 'value': "GP"})

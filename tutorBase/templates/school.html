@@ -28,10 +28,9 @@
 </head>
 <body>
     <div style="text-align:center;margin-top:200px">
-        <a href="/engineering" class="btn btn-default btn-lg">Engineering</a></br></br>
-        <a href="/humanities" class="btn btn-default btn-lg">Humanities and Arts</a></br></br>
-        <a href="/science" class="btn btn-default btn-lg">Natural and Social Sciences</a></br></br>
-        <a href="/earth" class="btn btn-default btn-lg">Earth Sciences</a>
+        {% for department in schools %}
+            <a href = "{{ department.value }}" class="btn btn-default btn-lg" style="margin:3px">{{ department.display }}</a>
+        {% endfor %}
     </div>
 </body>
 </html>

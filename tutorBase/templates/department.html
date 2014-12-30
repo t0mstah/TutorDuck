@@ -1,4 +1,4 @@
-humanities.html<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -27,8 +27,10 @@ humanities.html<!DOCTYPE html>
 
 </head>
 <body>
-    <div class="text-vertical-center" style="text-align:center;margin-top:200px">
-
+    <div style="text-align:center;margin-top:200px">
+        {% for tutor in tutors %}
+            <a href = "{{ tutor.first_name }}" class="btn btn-default btn-sm" style="margin:3px">{{ tutor.tagLine }}</a></br></br>
+        {% endfor %}
     </div>
 </body>
 </html>

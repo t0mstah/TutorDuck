@@ -17,24 +17,21 @@ urlpatterns = patterns('',
     url(r'^logout/',
         'tutorBase.views.logout', name='logout'),
 
-    url(r'^who$',
+    url(r'^who/',
         'tutorBase.views.who', name='who'),
 
     url(r'^tutor/',
         'tutorBase.views.tutor', name='tutor'),
 
-    url(r'^school',
-        'tutorBase.views.school', name='school'),
+    url(r'^stanford/$',
+        'tutorBase.views.stanford', name='stanford'),
 
-    url(r'^engineering/',
-        'tutorBase.views.engineering', name='engineering'),
+    url(r'^stanford/(?P<school>\w+)/$',
+        'tutorBase.views.stanford', name='stanford'),
 
-    url(r'^humanities/',
-        'tutorBase.views.humanities', name='humanities'),
+    url(r'^stanford/(?P<school>\w+)/(?P<department>\w+)/$',
+        'tutorBase.views.stanford', name='stanford'),
 
-    url(r'^science/',
-        'tutorBase.views.science', name='science'),
-
-    url(r'^earth/',
-        'tutorBase.views.earth', name='earth'),
+    url(r'^stanford/(?P<school>\w+)/(?P<department>\w+)/(?P<tutor>\w+)/$',
+        'tutorBase.views.stanford', name='stanford')
 )
