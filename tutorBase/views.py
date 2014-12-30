@@ -101,6 +101,11 @@ def authenticate_user(email, password):
     return found_user
 
 
+def logout(request):
+    request.session.flush()
+    return HttpResponseRedirect(reverse('login'), {'error_message': 'You have been logged out successfully'})
+
+
 def who(request):
     if request.session.get('logged_in', False):
         return render(request, 'who.html')
@@ -108,36 +113,32 @@ def who(request):
         return render(request, 'login.html', {'error_message': 'You must login to continue'})
 
 
-def logout(request):
-    request.session.flush()
-    return HttpResponseRedirect(reverse('login'), {'error_message': 'You have been logged out successfully'})
-
-
 def tutor(request):
     if request.session.get('logged_in', False):
         if request.method == 'POST':
             email = request.session.get('email')
-            tutor = User.objects.get(email=email)
+            t = User.objects.get(email=email)
             first_name = request.POST['first_name']
             school = request.POST['school']
             department = request.POST['department']
-            tagLine = request.POST['tagLine']
+            line = request.POST['tagLine']
             description = request.POST['description']
 
-            tutorCard = TutorCard(tutor=tutor, first_name=first_name, school=school, department=department, tagLine=tagLine, description=description)
-            tutorCard.save()
-            return render(request, 'who.html')
+            card = TutorCard(tutor=t, first_name=first_name, school=school, department=department, tagLine=line,
+                             description=description)
+            card.save()
+            return HttpResponseRedirect(reverse('who'))
         else:
             return render(request, 'tutor.html')
     else:
         return render(request, 'login.html', {'error_message': 'You must login to continue'})
 
 
-def stanford(request, school=None, department=None, tutor=None):
+def stanford(request, school=None, department=None, key=None):
     if request.session.get('logged_in', False):
-        if tutor:
-            tutor = TutorCard.objects.filter(first_name=tutor)
-            return render(request, 'card.html', {'tutor': tutor})
+        if key:
+            card = TutorCard.objects.get(id=key)
+            return render(request, 'card.html', {'tutor': card})
         elif department:
             tutors = TutorCard.objects.filter(department=department)
             return render(request, 'department.html', {'tutors': tutors})
