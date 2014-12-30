@@ -162,29 +162,29 @@ def getDepartments(school):
                {'display': "Materials Science and Engineering", 'value': "MSE"},
                {'display': "Mechanical Engineering", 'value': "ME"})
 
-    if school == 'humanities':
+    elif school == 'humanities':
         return ({'display': "Art and Art History", 'value': "ART"},
                {'display': "Classics", 'value': "CLASS"},
                {'display': "English", 'value': "ENGL"},
                {'display': "History", 'value': "HIST"},
                {'display': "Linguistics", 'value': "LING"},
                {'display': "Music", 'value': "MUS"},
-               {'display': "Philosophy", 'value': "PHL"},
+               {'display': "Philosophy", 'value': "PHIL"},
                {'display': "Languages", 'value': "LANG"})
 
-    if school == 'science':
+    elif school == 'science':
         return ({'display': "Biology", 'value': "BIO"},
                {'display': "Chemistry", 'value': "CHEM"},
                {'display': "Communication", 'value': "COMM"},
                {'display': "Economics", 'value': "ECON"},
                {'display': "Mathematics", 'value': "MATH"},
-               {'display': "Physics", 'value': "PHY"},
+               {'display': "Physics", 'value': "PHYS"},
                {'display': "Political Science", 'value': "POLI"},
                {'display': "Psychology", 'value': "PSYCH"},
                {'display': "Statistics", 'value': "STAT"},
                {'display': "Classics", 'value': "CLA"})
 
-    if school == 'earth':
+    elif school == 'earth':
         return ({'display': "Earth Systems", 'value': "ESYS"},
                {'display': "Energy Resources Engineering", 'value': "ERE"},
                {'display': "Geological and Environmental Sciences", 'value': "GES"},

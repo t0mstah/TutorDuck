@@ -16,7 +16,7 @@ $(document).ready(function() {
         {display: "History", value: "HIST"},
         {display: "Linguistics", value: "LING"},
         {display: "Music", value: "MUS"},
-        {display: "Philosophy", value: "PHL"},
+        {display: "Philosophy", value: "PHIL"},
         {display: "Languages", value: "LANG"}];
 
     var NAS = [
@@ -25,7 +25,7 @@ $(document).ready(function() {
         {display: "Communication", value: "COMM"},
         {display: "Economics", value: "ECON"},
         {display: "Mathematics", value: "MATH"},
-        {display: "Physics", value: "PHY"},
+        {display: "Physics", value: "PHYS"},
         {display: "Political Science", value: "POLI"},
         {display: "Psychology", value: "PSYCH"},
         {display: "Statistics", value: "STAT"},
