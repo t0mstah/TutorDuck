@@ -32,6 +32,6 @@ urlpatterns = patterns('',
     url(r'^stanford/(?P<school>\w+)/(?P<department>\w+)/$',
         'tutorBase.views.stanford', name='stanford'),
 
-    url(r'^stanford/(?P<school>\w+)/(?P<department>\w+)/(?P<key>\w+)/$',
+    url(r'^stanford/(?P<school>\w+)/(?P<department>\w+)/(?P<key>\d+)/$',
         'tutorBase.views.stanford', name='stanford')
 )
