@@ -1,6 +1,8 @@
 {% if back_url %}
     <div class="container" style="width:auto;float:left">
-        <a class="btn btn-default" style="margin-left:5px" href={{ back_url }}>{{ back_label }}</a>
+        <button type="button" class="btn btn-default">
+            <a class="glyphicon glyphicon-chevron-left" style="width:40px;text-decoration:none;color:black" href={{ back_url }}></a>
+        </button>
     </div>
 {% endif %}
 

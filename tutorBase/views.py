@@ -144,19 +144,33 @@ def tutor(request):
 
 def stanford(request, school=None, department=None, key=None):
     if request.session.get('logged_in', False):
+        schools = getDepartments(school)
         if key:
             card = TutorCard.objects.get(id=key)
-            return render(request, 'card.html', {'tutor': card})
+            return render(request, 'card.html', {'schools': schools, 'tutor': card})
         elif department:
             tutors = TutorCard.objects.filter(department=department)
-            return render(request, 'department.html', {'tutors': tutors, 'school': school})
+            return render(request, 'department.html', {'school': school, 'schools': schools, 'tutors': tutors, 'department': department})
         elif school:
-            schools = getDepartments(school)
-            return render(request, 'school.html', {'schools': schools})
+            schoolDisp = getSchoolDisp(school)
+            return render(request, 'school.html', {'school': schoolDisp, 'schools': schools})
         else:
             return render(request, 'stanford.html')
     else:
         return render(request, 'login.html', {'error_message': 'You must login to continue'})
+
+def getSchoolDisp(school):
+    if school == 'engineering':
+        return "Engineering"
+
+    elif school == 'humanities':
+        return "Humanities and Arts"
+
+    elif school == 'science':
+        return "Natural and Social Sciences"
+
+    elif school == 'earth':
+        return "Earth Sciences"
 
 
 def getDepartments(school):
@@ -166,7 +180,7 @@ def getDepartments(school):
                {'display': "Computer Science", 'value': "CS"},
                {'display': "Electrical Engineering", 'value': "EE"},
                {'display': "Environmental Engineering", 'value': "ENV"},
-               {'display': "Management Science and Engineering", 'value': "MS&E"},
+               {'display': "Management Science and Engineering", 'value': "MSAE"},
                {'display': "Materials Science and Engineering", 'value': "MSE"},
                {'display': "Mechanical Engineering", 'value': "ME"})
 

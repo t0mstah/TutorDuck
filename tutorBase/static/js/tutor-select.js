@@ -5,7 +5,7 @@ $(document).ready(function() {
         {display: "Computer Science", value: "CS"},
         {display: "Electrical Engineering", value: "EE"},
         {display: "Environmental Engineering", value: "ENV"},
-        {display: "Management Science and Engineering", value: "MS&E"},
+        {display: "Management Science and Engineering", value: "MSAE"},
         {display: "Materials Science and Engineering", value: "MSE"},
         {display: "Mechanical Engineering", value: "ME"}];
 
