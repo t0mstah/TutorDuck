@@ -35,6 +35,7 @@ def create_user(request):
     if request.method == 'POST':
         email = request.POST['email']
         password = request.POST['password']
+        confirm = request.POST['confirm']
 
         stanford_email = re.match('.*@stanford.edu$', email)
         if stanford_email is None:
@@ -42,6 +43,9 @@ def create_user(request):
 
         if User.objects.filter(email=email).count() > 0:
             return render(request, 'create.html', {'error_message': 'User with email \'%s\' already exists' % email})
+
+        if confirm != password:
+            return render(request, 'create.html', {'error_message': 'Passwords do not match'})
 
         secure_bytes = urandom(50)
         char_salt = b64encode(secure_bytes).decode('utf-8')
