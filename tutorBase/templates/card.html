@@ -2,7 +2,9 @@
 <html lang="en">
 
 <head>
-    {% include 'logout.html' %}
+    {% with "/stanford/"|add:tutor.school|lower|add:"/"|add:tutor.department as url%}
+        {% include 'topbar.html' with back_url=url back_label="< Back"%}
+    {% endwith %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">

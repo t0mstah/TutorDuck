@@ -118,11 +118,15 @@ def tutor(request):
         if request.method == 'POST':
             email = request.session.get('email')
             t = User.objects.get(email=email)
-            first_name = request.POST['first_name']
-            school = request.POST['school']
-            department = request.POST['department']
-            line = request.POST['tagLine']
-            description = request.POST['description']
+
+            try:
+                first_name = request.POST['first_name']
+                school = request.POST['school']
+                department = request.POST['department']
+                line = request.POST['tagLine']
+                description = request.POST['description']
+            except KeyError:
+                return render(request, 'tutor.html', {"error_message": "Some fields are empty"})
 
             card = TutorCard(tutor=t, first_name=first_name, school=school, department=department, tagLine=line,
                              description=description)
@@ -141,7 +145,7 @@ def stanford(request, school=None, department=None, key=None):
             return render(request, 'card.html', {'tutor': card})
         elif department:
             tutors = TutorCard.objects.filter(department=department)
-            return render(request, 'department.html', {'tutors': tutors})
+            return render(request, 'department.html', {'tutors': tutors, 'school': school})
         elif school:
             schools = getDepartments(school)
             return render(request, 'school.html', {'schools': schools})

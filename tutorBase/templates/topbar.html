@@ -1,3 +1,9 @@
+{% if back_url %}
+    <div class="container" style="width:auto;float:left">
+        <a class="btn btn-default" style="margin-left:5px" href={{ back_url }}>{{ back_label }}</a>
+    </div>
+{% endif %}
+
 <div class="container" style="width:auto;margin-top:10px;text-align:right">
     Logged in as <b>{{ request.session.email }}</b>
     <a class="btn btn-danger" style="margin-left:5px" href="/logout">Logout</a>
