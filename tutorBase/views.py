@@ -1,7 +1,8 @@
+from django.core.serializers import json
 from tutorBase.models import User, TutorCard
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from os import urandom
 from base64 import b64encode
 import hashlib
@@ -159,6 +160,7 @@ def stanford(request, school=None, department=None, key=None):
     else:
         return render(request, 'login.html', {'error_message': 'You must login to continue'})
 
+
 def getSchoolDisp(school):
     if school == 'engineering':
         return "Engineering"
@@ -208,3 +210,24 @@ def getDepartments(school):
                {'display': "Energy Resources Engineering", 'value': "ERE"},
                {'display': "Geological and Environmental Sciences", 'value': "GES"},
                {'display': "Geophysics", 'value': "GP"})
+
+
+def search_all(request):
+    if request.method == 'GET':
+        query = request.GET.get('query')
+        results = []
+
+        for card in TutorCard.objects.all():
+            if query in card.tutor.email or \
+               query in card.first_name or \
+               query in card.school or \
+               query in card.department or \
+               query in card.tagLine or \
+               query in card.description:
+                results.append(card.tagLine)
+
+        return JsonResponse({"results": results})
+
+    else:
+        return JsonResponse({"results": ["An error has occurred."]})
+
