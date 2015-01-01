@@ -49,6 +49,9 @@ def create_user(request):
         if User.objects.filter(email=email).count() > 0:
             return render(request, 'create.html', {'error_message': 'User with email \'%s\' already exists' % email})
 
+        if len(password) < 6:
+            return render(request, 'create.html', {'error_message': 'Password must be at least 6 characters long'})
+
         if confirm != password:
             return render(request, 'create.html', {'error_message': 'Passwords do not match'})
 
