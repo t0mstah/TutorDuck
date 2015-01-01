@@ -33,7 +33,7 @@ def login(request):
         return render(request, 'login.html')
 
 
-TEST_EMAIL = 'tommy.fang12@gmail.com'
+TEST_EMAIL = 'jeanluc.watson@gmail.com'
 
 
 def create_user(request):
@@ -229,3 +229,23 @@ def search_all(request):
 
     else:
         return JsonResponse({"results": ["An error has occurred."]})
+
+
+def contact(request):
+    if request.method == 'POST':
+
+        try:
+            name = request.POST['name']
+            email = request.POST['email']
+            message = request.POST['message']
+        except KeyError:
+            return render(request, 'contact.html', {"error_message": "Some fields are empty"})
+
+        send_mail('Contact message from '+name+' about Tutor Duck',
+                  'And I quote, \"'+message+'\".\n\nRespond to this message by emailing '+email+".",
+                  'winterproject.test@gmail.com', ['winterproject.test@gmail.com'], fail_silently=False)
+
+        return render(request, 'contact.html', {'success': "Message sent successfully"})
+    else:
+        return render(request, 'contact.html')
+
