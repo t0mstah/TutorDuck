@@ -5,6 +5,9 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
 
+    url(r'^$',
+        'tutorBase.views.index', name='index'),
+
     url(r'^login/',
         'tutorBase.views.login', name='login'),
 

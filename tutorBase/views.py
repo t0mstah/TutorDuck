@@ -11,6 +11,9 @@ from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.core.mail import send_mail
 
 
+def index(request):
+    return render(request, 'index.html')
+
 def login(request):
     if request.session.get('logged_in', False):
             return HttpResponseRedirect(reverse('who'))
@@ -230,4 +233,3 @@ def search_all(request):
 
     else:
         return JsonResponse({"results": ["An error has occurred."]})
-
