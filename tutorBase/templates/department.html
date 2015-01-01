@@ -31,12 +31,13 @@
 <body>
     {% for dep in schools %}
         {% if dep.value == department %}
-            <div class="page-header" style="text-align:center"><h1>{{ dep.display }}</h1></div>
+            <div id="{{ department }}" class="page-header" style="text-align:center"><h1>{{ dep.display }}</h1></div>
         {% endif %}
     {% endfor %}
-    <ul class="list-group" style="margin:6% auto;width:50%">
+    {% include 'searchbar.html' %}
+    <ul class="list-group" style="margin:4% auto;width:50%">
         {% for tutor in tutors %}
-            <a href = "{{ tutor.id }}" class="list-group-item">{{ tutor.tagLine }}</a>
+            <a id = "{{ tutor.id }}" href = "{{ tutor.id }}" class="list-group-item tutor-card">{{ tutor.tagLine }}</a>
         {% endfor %}
     </ul>
 </body>

@@ -4,26 +4,28 @@ $(document).ready(function(){
 
     $("input").on('input',function(){
         var query = $('input').val();
-        var result_target = $("#result");
         if(query===""){
-            result_target.text("");
-            return;
+            $('.tutor-card').each(function(i, obj){
+                $(this).fadeIn('fast');
+            });
         }
+        var department = $('.page-header').first().attr('id');
 
         $.ajax({
             url:"/search/",
             type: "GET",
-            data: {'query' : query},
+            data: {'query' : query, 'dept' : department},
 
             success: function(json){
-                result_target.empty();
-                for(var i=0; i<json.results.length; i++){
-                    result_target.append("<b>"+json.results[i]+"</b><br>");
-                }
+                $('.tutor-card').each(function(i, obj){
+                    if($.inArray($(this).attr('id'),json.results) == -1)
+                        $(this).fadeOut('fast');
+                    else $(this).fadeIn('fast');
+                });
             },
 
             error: function(){
-                result_target.text("An error occurred");
+                alert("An error occurred while searching.");
             }
         });
     });
