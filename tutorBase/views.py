@@ -1,4 +1,5 @@
 from django.core.serializers import json
+from django.db.models import Q
 from tutorBase.models import User, TutorCard
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
@@ -215,16 +216,11 @@ def getDepartments(school):
 def search_all(request):
     if request.method == 'GET':
         query = request.GET.get('query')
+        dept = request.GET.get('dept')
         results = []
 
-        for card in TutorCard.objects.all():
-            if query in card.tutor.email or \
-               query in card.first_name or \
-               query in card.school or \
-               query in card.department or \
-               query in card.tagLine or \
-               query in card.description:
-                results.append(card.tagLine)
+        for card in TutorCard.objects.filter(tagLine__contains=query).filter(department=dept):
+                results.append(str(card.id))
 
         return JsonResponse({"results": results})
 
