@@ -162,13 +162,10 @@ def stanford(request, school=None, department=None, key=None):
 def getSchoolDisp(school):
     if school == 'engineering':
         return "Engineering"
-
     elif school == 'humanities':
         return "Humanities and Arts"
-
     elif school == 'science':
         return "Natural and Social Sciences"
-
     elif school == 'earth':
         return "Earth Sciences"
 
