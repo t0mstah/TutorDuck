@@ -23,6 +23,9 @@ urlpatterns = patterns('',
     url(r'^tutor/',
         'tutorBase.views.tutor', name='tutor'),
 
+    url(r'^search/',
+        'tutorBase.views.search_all', name='search'),
+
     url(r'^stanford/$',
         'tutorBase.views.stanford', name='stanford'),
 
